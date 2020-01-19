@@ -1,6 +1,6 @@
 /********************************************************************* 
 ** Author: Katheen Thurmes
-** Date: 5 Nov., 2019
+** Date: 5 Nov., 2019 (updated 24 Nov., 2019)
 ** Description: DoubleLinkedList (or the DLList class) implements a 
 linked list in which each node has a pointer to the next and previous 
 node. The list itself has only two data members: a pointer to the 
@@ -24,20 +24,15 @@ DLList::DLList()
     tail = 0;
 }
 
-DLList::~DLList()
-{
-    deleteDLList();
-}
-
-Node *DLList::peekFront()
-{
-    return head;
-}
-
+/********************************************************************* 
+** Description: popFront takes the first node in the linked list, 
+removes it from the list, and returns the node.
+*********************************************************************/
 Node *DLList::popFront()
 {
     Node *toReturn = head;
     head = head->getNext();
+    //Check that the list isn't already empty
     if (head != 0)
     {
         head->setPrev(0);
@@ -46,8 +41,8 @@ Node *DLList::popFront()
 }
 
 /********************************************************************* 
-** Description: addToHead(int), along with its helper function, 
-addToHead(Node*), creates a new Node with inputted value stored 
+** Description: addToBack(Character*), along with its helper function, 
+addToBack(Node*), creates a new Node with inputted Character stored 
 inside, add the Node object to the head of the list, and re-assigns 
 the head pointer accordingly.
 *********************************************************************/
@@ -60,9 +55,10 @@ void DLList::addToBack(Character *value)
 /********************************************************************* 
 ** Description: addToHead(Node*) is a helper function for adding a 
 new Node to the head of the linked list. The reason for this function 
-to exist separately from the addToHead(int) function is to make the 
-class a little more reusable, in that this function can be used to 
-add a Node that contains any kind of data, rather than just an int.
+to exist separately from the addToHead(Character*) function is to make 
+the class a little more reusable, in that this function can be used to 
+add a Node that contains any kind of data, rather than just a 
+Character object.
 *********************************************************************/
 void DLList::addToBack(Node *newGuy)
 {
@@ -112,6 +108,33 @@ void DLList::traverse()
         cout << endl;
     }
 }
+/********************************************************************* 
+** Description: traverseReverse will print out the names of the 
+Characters in the linked list backwards.
+*********************************************************************/
+void DLList::traverseReverse()
+{
+    Node *current;
+    current = this->tail;
+
+    //Check if list is empty
+    if (current == 0)
+    {
+        cout << "The list is empty.\n";
+    }
+
+    else
+    {
+        //Go through and print each node's value to the terminal.
+        while (current != 0)
+        {
+            current->printValue();
+            cout << " ";
+            current = current->getPrev();
+        }
+        cout << endl;
+    }
+}
 
 /********************************************************************* 
 ** Description: deleteFirstNode deletes the first Node in the list 
@@ -154,15 +177,28 @@ void DLList::printHeadVal()
     cout << endl;
 }
 
+/********************************************************************* 
+** Description: isEmpty returns true if there are no more nodes in 
+the list.
+*********************************************************************/
 bool DLList::isEmpty()
 {
     return (head == 0);
 }
 
+/********************************************************************* 
+** Description: deleteDLList calls deleteFirstNode until the list is 
+empty.
+*********************************************************************/
 void DLList::deleteDLList()
 {
     while (this->head != 0)
     {
         deleteFirstNode();
     }
+}
+
+DLList::~DLList()
+{
+    deleteDLList();
 }

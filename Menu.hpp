@@ -11,16 +11,13 @@ and launches the battle between two characters.
 #include "getNumberBetween.hpp"
 #include "Character.hpp"
 #include <string>
-#include "Queue.hpp"
 
-class Menu{
-    private:
-    public:
-        void mainMenu();
-        void roundSetup();
-        Character* createCharacter(int, string);
-        Queue* teamSetup(int);
-        void tournamentSetup();
+class Menu
+{
+private:
+public:
+    void welcome();
+    void mainMenu();
 };
 
 #endif

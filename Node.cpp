@@ -1,6 +1,6 @@
 /********************************************************************* 
 ** Author: Katheen Thurmes
-** Date: 5 Nov., 2019
+** Date: 5 Nov., 2019 (updated 24 Nov., 2019)
 ** Description: Node implements a node that will be used to construct 
 a linked list. This implementation contains an int value and each 
 node has a pointer to the next node and the previous node. It has 
@@ -16,40 +16,49 @@ using std::cout;
 ** Description: the Node constructor sets the pointers to the next 
 and previous nodes to null, and the val to the input value.
 *********************************************************************/
-Node::Node(Character* character){
+Node::Node(Character *character)
+{
     this->next = 0;
     this->prev = 0;
     this->chara = character;
 }
 
-void Node::printValue(){
+void Node::printValue()
+{
     cout << chara->getName();
 }
 
-Node* Node::getNext(){
+Node *Node::getNext()
+{
     return next;
 }
 
-Node* Node::getPrev(){
+Node *Node::getPrev()
+{
     return prev;
 }
 
-void Node::setNext(Node* newGuy){
+void Node::setNext(Node *newGuy)
+{
     next = newGuy;
 }
 
-void Node::setPrev(Node* newGuy){
+void Node::setPrev(Node *newGuy)
+{
     prev = newGuy;
 }
 
-Character* Node::getCharacter(){
+Character *Node::getCharacter()
+{
     return this->chara;
 }
 
-void Node::deleteNode(){
+void Node::deleteNode()
+{
     delete chara;
     cout << "Deleting a node!\n";
 }
-Node::~Node(){
+Node::~Node()
+{
     delete chara;
 }

@@ -1,6 +1,6 @@
 /********************************************************************* 
 ** Author: Katheen Thurmes
-** Date: 2 Nov., 2019
+** Date: 2 Nov., 2019 (updated 24 Nov., 2019)
 ** Description: The Battle class sets up and controls a battle 
 between two characters. Its data members include two pointers to 
 characters and a flag that is set to true when a player has lost. 
@@ -65,7 +65,7 @@ void Battle::runBattle(int nRound)
 }
 
 /********************************************************************* 
-** Description: Turn controls a single round within the battle. It 
+** Description: turn controls a single round within the battle. It 
 has the attacker attack and it has the defender defend. It also 
 prints out updates to the terminal as it goes.
 *********************************************************************/

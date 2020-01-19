@@ -1,6 +1,6 @@
 /********************************************************************* 
 ** Author: Katheen Thurmes
-** Date: 2 Nov., 2019
+** Date: 2 Nov., 2019 (updated 24 Nov., 2019)
 ** Description: Medusa is an implementation of the Character 
 virtual class. Medusa can use "Glare" to kill a player in one hit if 
 the character rolls a 12 in its attack.
@@ -19,20 +19,23 @@ using std::string;
 ** Description: The constructor sets up the character with the 
 appropriate stats according to its type.
 *********************************************************************/
-Medusa::Medusa(string name){
+Medusa::Medusa(string name)
+{
     this->name = name;
-    
+
     //Set up the sets of dice
     //Set up attack dice
     nAttackDice = 2;
-    attackDice = new Die*[nAttackDice];
-    for (int i = 0; i < nAttackDice; i++){
+    attackDice = new Die *[nAttackDice];
+    for (int i = 0; i < nAttackDice; i++)
+    {
         attackDice[i] = new Die(6);
     }
     //Set up defense dice
     nDefenseDice = 1;
-    defenseDice = new Die*[nDefenseDice];
-    for (int j = 0; j < nDefenseDice; j++){
+    defenseDice = new Die *[nDefenseDice];
+    for (int j = 0; j < nDefenseDice; j++)
+    {
         defenseDice[j] = new Die(6);
     }
 
@@ -45,17 +48,20 @@ Medusa::Medusa(string name){
 ** Description: attack rolls all the attacker's attack dice and 
 returns the value of the roll.
 *********************************************************************/
-int Medusa::attack(){
-    
+int Medusa::attack()
+{
+
     int attackRoll = 0;
 
     //Roll each die in turn, adding the number to the total
-    for (int i = 0; i < nAttackDice; i++){
+    for (int i = 0; i < nAttackDice; i++)
+    {
         attackRoll += attackDice[i]->roll();
     }
 
     //If Medusa rolls a 12, then she uses Glare and automatically kills her opponent.
-    if (attackRoll == 12){
+    if (attackRoll == 12)
+    {
         //cout << this->name << " rolled a 12! She uses \"Glare\"!\n";
         attackRoll = 999;
     }
@@ -70,11 +76,13 @@ int Medusa::attack(){
 ** Description: rollDefense rolls all the defender's defense dice 
 and returns the value of the roll.
 *********************************************************************/
-int Medusa::rollDefense(){
+int Medusa::rollDefense()
+{
     int rollSum = 0;
 
     //Roll each die in turn, adding the number to the total
-    for (int i = 0; i < nDefenseDice; i++){
+    for (int i = 0; i < nDefenseDice; i++)
+    {
         rollSum += defenseDice[i]->roll();
     }
 
@@ -88,12 +96,14 @@ int Medusa::rollDefense(){
 rolls, and updates the defensive character's stats accordingly. It 
 returns the net damage that the defense has taken.
 *********************************************************************/
-int Medusa::defense(int attackRoll, int defenseRoll){
+int Medusa::defense(int attackRoll, int defenseRoll)
+{
     //Damage is attack roll - defense roll - armor
-    int netDamage = attackRoll-(defenseRoll + this->armor);
+    int netDamage = attackRoll - (defenseRoll + this->armor);
 
     //Don't let net damage go below 0
-    if (netDamage < 0){
+    if (netDamage < 0)
+    {
         netDamage = 0;
     }
 
@@ -101,7 +111,8 @@ int Medusa::defense(int attackRoll, int defenseRoll){
     strength -= netDamage;
 
     //Don't let health go below 0
-    if (strength < 0){
+    if (strength < 0)
+    {
         strength = 0;
     }
 
@@ -112,7 +123,8 @@ int Medusa::defense(int attackRoll, int defenseRoll){
 ** Description: getCharacterName returns the type of character as a 
 string.
 *********************************************************************/
-string Medusa::getCharacterName(){
+string Medusa::getCharacterName()
+{
     return "Medusa";
 }
 
@@ -120,9 +132,10 @@ string Medusa::getCharacterName(){
 ** Description: printStats prints the type, name, armor, and strength 
 of the character to the terminal.
 *********************************************************************/
-void Medusa::printStats(){
+void Medusa::printStats()
+{
     cout << "Type: Medusa" << endl;
-    cout << "Name: " << name <<endl;
+    cout << "Name: " << name << endl;
     cout << "Armor: " << armor << endl;
     cout << "Strength: " << strength << endl;
 }
@@ -130,7 +143,8 @@ void Medusa::printStats(){
 /********************************************************************* 
 ** Description: getName returns the character's name as a string.
 *********************************************************************/
-string Medusa::getName(){
+string Medusa::getName()
+{
     return name;
 }
 
@@ -138,20 +152,28 @@ string Medusa::getName(){
 ** Description: Destructor deletes the attack and defense dice along 
 with their pointers.
 *********************************************************************/
-Medusa::~Medusa(){
+Medusa::~Medusa()
+{
     //Delete attack dice
-    for (int i = 0; i < nAttackDice; i++){
+    for (int i = 0; i < nAttackDice; i++)
+    {
         delete attackDice[i];
     }
     //Delete defense dice
-    for (int j = 0; j < nDefenseDice; j++){
+    for (int j = 0; j < nDefenseDice; j++)
+    {
         delete defenseDice[j];
     }
     delete[] attackDice;
     delete[] defenseDice;
 }
 
-void Medusa::recover(){
-    int strengthLost = 8-strength;
-    strength = strength + (strengthLost/2);
+/********************************************************************* 
+** Description: recover() allows the character to regain half of the 
+strength they've lost
+*********************************************************************/
+void Medusa::recover()
+{
+    int strengthLost = 8 - strength;
+    strength = strength + (strengthLost / 2);
 }

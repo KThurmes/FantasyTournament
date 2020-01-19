@@ -16,8 +16,6 @@ using std::string;
 class BlueMan : public Character
 {
 private:
-    int nOriginalDefenseDice;
-
 public:
     string getName();
     BlueMan(string);

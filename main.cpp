@@ -5,11 +5,11 @@
 Oregon State University's CS162 class in the fall of 2019. 
 *********************************************************************/
 
-#include "Menu.hpp"
 #include "Tournament.hpp"
+#include "Menu.hpp"
 
 int main()
 {
-    Tournament tourney;
-    tourney.autoSetup();
+    Menu m;
+    m.welcome();
 }

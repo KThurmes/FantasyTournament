@@ -1,6 +1,6 @@
 /********************************************************************* 
 ** Author: Katheen Thurmes
-** Date: 2 Nov., 2019
+** Date: 2 Nov., 2019 (updated 24 Nov., 2019)
 ** Description: Vampire is an implementation of the Character 
 virtual class. Vampire uses "Charm" to ensure that there is a 50-50 
 chance that it will not take any damage on a given round.
@@ -20,6 +20,9 @@ appropriate stats according to its type.
 *********************************************************************/
 Vampire::Vampire(string name)
 {
+    //Seed random on time of creation of a vampire
+    srand(time(NULL));
+
     this->name = name;
 
     //Set up the sets of dice
@@ -95,7 +98,6 @@ int Vampire::defense(int attackRoll, int defenseRoll)
 
     //Implement 50% chance of not taking any damage
     //Choose random number between 0 and 1.
-    srand(time(NULL));
     int nRand = (rand() % 2);
 
     //If random number is 0, then vampire doesn't take damage.
@@ -104,7 +106,7 @@ int Vampire::defense(int attackRoll, int defenseRoll)
         netDamage = 0;
     }
 
-    //Don't let newDamage go below 0.
+    //Don't let netDamage go below 0.
     else if (netDamage < 0)
     {
         netDamage = 0;
@@ -165,6 +167,10 @@ Vampire::~Vampire()
     delete[] defenseDice;
 }
 
+/********************************************************************* 
+** Description: recover() allows the character to regain half of the 
+strength they've lost
+*********************************************************************/
 void Vampire::recover()
 {
     int strengthLost = 18 - strength;

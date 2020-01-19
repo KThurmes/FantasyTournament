@@ -18,12 +18,14 @@ using std::cin;
 using std::cout;
 using std::endl;
 
-int getNumberBetween(int low, int high){
+int getNumberBetween(int low, int high)
+{
     //Get an integer from the user
     int input = getValidInt();
 
     //Check that the integer is between low and high.
-    if (input < low || input > high){
+    if (input < low || input > high)
+    {
         cout << "Please enter an integer between " << low << " and " << high << "." << endl;
         //Clear input stream
         cin.clear();
@@ -31,10 +33,10 @@ int getNumberBetween(int low, int high){
     }
 
     return input;
-
 }
 
-int getValidInt(){
+int getValidInt()
+{
     //Input validation code and cin stream resetting adapted from https://stackoverflow.com/questions/19521320/why-do-i-get-an-infinite-loop-if-i-enter-a-letter-rather-than-a-number
     //Accessed 1 Oct., 2019
 
@@ -56,7 +58,8 @@ int getValidInt(){
     //Will not reject an input that ends in ".0".
     input = rawInput; //value of "input" will be the floor of "rawInput".
 
-    if (!(rawInput-input == 0)){
+    if (!(rawInput - input == 0))
+    {
         cout << "Please enter an integer between -2147483648 and 2147483647.." << endl;
 
         //Clear input stream
